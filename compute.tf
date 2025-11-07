@@ -40,3 +40,12 @@ resource "oci_core_instance" "web-02" {
 
 }
 
+variable "user-data" {
+  default = <<EOF
+#!/bin/bash -x
+echo '############# start cmds  ###############'
+echo '#############  end cmds  ###############'
+EOF
+
+}
+
