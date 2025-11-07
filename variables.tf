@@ -32,7 +32,7 @@ variable "image_operating_system" {
   default = "Oracle Linux"
 }
 variable "image_operating_system_version" {
-  default = "7.9"
+  default = "8.0"
 }
 
 ### Compute Shape
