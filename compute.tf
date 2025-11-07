@@ -39,3 +39,4 @@ resource "oci_core_instance" "web-02" {
   }
 
 }
+
