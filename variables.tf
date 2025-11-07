@@ -8,7 +8,7 @@ variable "ssh_public_key" {}
 
 # Choose an Availability Domain
 variable "AD" {
-  default = "3"
+  default = "1"
 }
 
 # VCN variables
@@ -39,7 +39,7 @@ variable "image_operating_system_version" {
 
 variable "instance_shape" {
   description = "Instance Shape"
-  default     = "VM.Standard.A1.Flex"
+  default     = "VM.Standard.E2.1.Micro"
 }
 
 variable "instance_flex_shape_ocpus" {
