@@ -1,0 +1,2 @@
+        # terraform.tfvars
+        ssh_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCofocAZiRjA0rhLmuN+1ZNPIz9T4PBpQMQaJ41lyF50yGPX1pDyRHGrXqSbVq0UYdOy05lhecLzGrI6U7dwHUMu4LKflgU/hY5s9QooKKPSjQ7Jww6V2Tdl5jSqWOIZPsq0yXQs5HUrujuMaD25uj8tXRmw0jaLpfp18oONXjWKI6/8DhCReAlovj0xc97+5q0brzWAvvFiwGM+hHkAhGC2H1KVU/DJj8pNL7HE35tmFeBW2cyU8V/Ek6EFFWtUP80ignoObfA8xaeIrAm2/a4//u+bcGZMwEJ0h8OEwq4JjmYQlFJEXbiJZIeph/n1K5omXbyw9BlssrqepbX1wzt Achuth_Men@2d44bcd9201d" 
