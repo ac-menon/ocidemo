@@ -13,7 +13,7 @@ resource "oci_core_instance" "web-01" {
   }
 
   metadata = {
-    ssh_authorized_keys = chomp(file(var.ssh_public_key))
+    ssh_authorized_keys = chomp(var.ssh_public_key)
     user_data           = base64encode(var.user-data)
   }
 
@@ -34,7 +34,7 @@ resource "oci_core_instance" "web-02" {
   }
 
   metadata = {
-    ssh_authorized_keys = chomp(file(var.ssh_public_key))
+    ssh_authorized_keys = chomp(var.ssh_public_key)
     user_data           = base64encode(var.user-data)
   }
 
