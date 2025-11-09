@@ -44,6 +44,13 @@ variable "user-data" {
   default = <<EOF
 #!/bin/bash -x
 echo '############# start cmds  ###############'
+sudo yum install httpd -y
+sudo apachectl start
+sudo systemctl enable httpd
+sudo apachectl configtest
+sudo firewall-cmd --permanent --zone=public --add-service=http
+sudo firewall-cmd --reload
+sudo bash -c 'echo This is compute test page >> /var/www/html/index.html'
 echo '#############  end cmds  ###############'
 EOF
 
