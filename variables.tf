@@ -4,7 +4,17 @@
 variable "tenancy_ocid" {}
 variable "region" {}
 variable "compartment_ocid" {}
-variable "ssh_public_key" {}
+#variable "ssh_public_key" {}
+variable "ssh_public_key" {
+  description = "Add the ssh public key used to access the compute instance. Set this or the ssh_public_key_path"
+  default     = ""  
+  type        = string
+}
+variable "ssh_public_key_path" {
+  description = "Path to the ssh public key used to access the compute instance. Set this or the ssh_public_key"
+  default     = "./ssh_pub_key"
+  type        = string
+}
 
 # Choose an Availability Domain
 variable "AD" {
