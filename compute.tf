@@ -13,7 +13,8 @@ resource "oci_core_instance" "web-01" {
   }
 
   metadata = {
-    ssh_authorized_keys = chomp(var.ssh_public_key)
+    #ssh_authorized_keys = chomp(var.ssh_public_key)    
+    ssh_authorized_keys = var.ssh_public_key != "" ? var.ssh_public_key : file(var.ssh_public_key_path)
     user_data           = base64encode(var.user-data-01)
   }
 
@@ -34,7 +35,8 @@ resource "oci_core_instance" "web-02" {
   }
 
   metadata = {
-    ssh_authorized_keys = chomp(var.ssh_public_key)
+    #ssh_authorized_keys = chomp(var.ssh_public_key)
+    ssh_authorized_keys = var.ssh_public_key != "" ? var.ssh_public_key : file(var.ssh_public_key_path)
     user_data           = base64encode(var.user-data-02)
   }
 
