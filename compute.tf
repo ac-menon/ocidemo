@@ -14,7 +14,7 @@ resource "oci_core_instance" "web-01" {
 
   metadata = {
     ssh_authorized_keys = chomp(var.ssh_public_key)
-    user_data           = base64encode(var.user-data)
+    user_data           = base64encode(var.user-data-01)
   }
 
 }
@@ -35,12 +35,12 @@ resource "oci_core_instance" "web-02" {
 
   metadata = {
     ssh_authorized_keys = chomp(var.ssh_public_key)
-    user_data           = base64encode(var.user-data)
+    user_data           = base64encode(var.user-data-02)
   }
 
 }
 
-variable "user-data" {
+variable "user-data-01" {
   default = <<EOF
 #!/bin/bash -x
 echo '############# start cmds  ###############'
@@ -50,7 +50,23 @@ sudo systemctl enable httpd
 sudo apachectl configtest
 sudo firewall-cmd --permanent --zone=public --add-service=http
 sudo firewall-cmd --reload
-sudo bash -c 'echo This is compute test page >> /var/www/html/index.html'
+sudo bash -c 'echo This is compute test page from 01 >> /var/www/html/index.html'
+echo '#############  end cmds  ###############'
+EOF
+
+}
+
+variable "user-data-02" {
+  default = <<EOF
+#!/bin/bash -x
+echo '############# start cmds  ###############'
+sudo yum install httpd -y
+sudo apachectl start
+sudo systemctl enable httpd
+sudo apachectl configtest
+sudo firewall-cmd --permanent --zone=public --add-service=http
+sudo firewall-cmd --reload
+sudo bash -c 'echo This is compute test page from 02 >> /var/www/html/index.html'
 echo '#############  end cmds  ###############'
 EOF
 
