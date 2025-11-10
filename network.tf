@@ -1,5 +1,5 @@
 
-resource "oci_core_virtual_network" "vcn" {
+resource "oci_core_virtual_network" "demo_vcn" {
   compartment_id = var.compartment_ocid
   cidr_block     = var.vcn_cidr
   dns_label      = var.vcn_dns_label
@@ -7,14 +7,14 @@ resource "oci_core_virtual_network" "vcn" {
 }
 
 # Internet Gateway
-resource "oci_core_internet_gateway" "igw" {
+resource "oci_core_internet_gateway" "demo_vcn_igw" {
   compartment_id = var.compartment_ocid
   display_name   = "${var.vcn_dns_label}_igw"
   vcn_id         = oci_core_virtual_network.vcn.id
 }
 
 # Public Route Table
-resource "oci_core_route_table" "PublicRT" {
+resource "oci_core_route_table" "demo_vcn_pubRT" {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_virtual_network.vcn.id
   display_name   = "${var.vcn_dns_label}_pubrt"
