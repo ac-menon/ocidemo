@@ -9,7 +9,7 @@ resource "oci_core_virtual_network" "vcn" {
 # Internet Gateway
 resource "oci_core_internet_gateway" "igw" {
   compartment_id = var.compartment_ocid
-  display_name   = "${var.vcn_dns_label}igw"
+  display_name   = "${var.vcn_dns_label}_igw"
   vcn_id         = oci_core_virtual_network.vcn.id
 }
 
@@ -17,7 +17,7 @@ resource "oci_core_internet_gateway" "igw" {
 resource "oci_core_route_table" "PublicRT" {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_virtual_network.vcn.id
-  display_name   = "${var.vcn_dns_label}pubrt"
+  display_name   = "${var.vcn_dns_label}_pubrt"
 
   route_rules {
     destination       = "0.0.0.0/0"
