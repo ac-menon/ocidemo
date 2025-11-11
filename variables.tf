@@ -28,12 +28,12 @@ variable "vcn_cidr" {
 
 variable "vcn_dns_label" {
   description = "VCN DNS label"
-  default     = "demo-vcn"
+  default     = "demovcn"
 }
 
 variable "dns_label" {
   description = "Subnet DNS Label"
-  default     = "demo-vcn-subnet"
+  default     = "demosubnet"
 }
 
 # OS Image
