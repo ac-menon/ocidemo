@@ -33,7 +33,6 @@ resource "oci_core_instance" "web-01" {
       host        = self.public_ip
     }
   }
-
 }
 
 resource "oci_core_instance" "web-02" {
@@ -70,6 +69,7 @@ resource "oci_core_instance" "web-02" {
       private_key = file("~/.ssh/demokey") # Adjust path to your private key
       host        = self.public_ip
     }
+  }
 }
 
 
