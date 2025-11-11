@@ -29,7 +29,7 @@ resource "oci_core_instance" "web-01" {
     connection {
       type        = "ssh"
       user        = "opc"
-      private_key = file("~/.ssh/demokey") # Adjust path to your private key
+      private_key = file("./demokey") # Adjust path to your private key
       host        = self.public_ip
     }
   }
@@ -66,7 +66,7 @@ resource "oci_core_instance" "web-02" {
     connection {
       type        = "ssh"
       user        = "opc"
-      private_key = file("~/.ssh/demokey") # Adjust path to your private key
+      private_key = file("./demokey") # Adjust path to your private key
       host        = self.public_ip
     }
   }
