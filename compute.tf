@@ -1,3 +1,10 @@
+data "template_file" "user-data-01" {
+  template = file("web-script01.sh")
+}
+data "template_file" "user-data-02" {
+  template = file("web-script02.sh")
+}
+
 resource "oci_core_instance" "web-01" {
   availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id      = var.compartment_ocid
@@ -15,7 +22,7 @@ resource "oci_core_instance" "web-01" {
   metadata = {
     #ssh_authorized_keys = chomp(var.ssh_public_key)    
     ssh_authorized_keys = var.ssh_public_key != "" ? var.ssh_public_key : file(var.ssh_public_key_path)
-    user_data           = base64encode(var.user-data-01)
+    user_data           = base64encode(data.template_file.user-data-01.rendered)
   }
 
 }
@@ -37,40 +44,10 @@ resource "oci_core_instance" "web-02" {
   metadata = {
     #ssh_authorized_keys = chomp(var.ssh_public_key)
     ssh_authorized_keys = var.ssh_public_key != "" ? var.ssh_public_key : file(var.ssh_public_key_path)
-    user_data           = base64encode(var.user-data-02)
+   user_data           = base64encode(data.template_file.user-data-02.rendered)
   }
 
 }
 
-variable "user-data-01" {
-  default = <<EOF
-#!/bin/bash -x
-echo '############# start cmds  ###############'
-sudo yum install httpd -y
-sudo apachectl start
-sudo systemctl enable httpd
-sudo apachectl configtest
-sudo firewall-cmd --permanent --zone=public --add-service=http
-sudo firewall-cmd --reload
-sudo bash -c 'echo This is compute test page from 01 >> /var/www/html/index.html'
-echo '#############  end cmds  ###############'
-EOF
 
-}
-
-variable "user-data-02" {
-  default = <<EOF
-#!/bin/bash -x
-echo '############# start cmds  ###############'
-sudo yum install httpd -y
-sudo apachectl start
-sudo systemctl enable httpd
-sudo apachectl configtest
-sudo firewall-cmd --permanent --zone=public --add-service=http
-sudo firewall-cmd --reload
-sudo bash -c 'echo This is compute test page from 02 >> /var/www/html/index.html'
-echo '#############  end cmds  ###############'
-EOF
-
-}
 
